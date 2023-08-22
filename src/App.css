@@ -7,6 +7,13 @@
   pointer-events: none;
 }
 
+.list-item {
+  cursor: pointer;
+}
+.list-item:hover {
+  color: #F00
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

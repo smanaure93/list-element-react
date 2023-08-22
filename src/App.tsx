@@ -1,23 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [list, setList] = useState([] as string[]);
+  const [item, setItem] = useState("");
+  const handleChange = (event: any) => {
+    setItem(event.target.value);
+  };
+  const handleAddItem = () => {
+    const listBck = [...list];
+    listBck.push(item);
+    setItem("");
+    setList(listBck);
+  };
+
+  const handleDeleteItem = (index: number) => {
+    const listBck = [...list];
+    listBck.splice(index, 1);
+    setList(listBck);
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          To add an item press <b>Add</b>. You can delete items by clicking on
+          them.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>
+          <input
+            type="text"
+            placeholder="Type a new item..."
+            value={item}
+            onChange={handleChange}
+          />
+          <button onClick={handleAddItem}>Add</button>
+        </div>
+        {list.length > 0 && (
+          <div>
+            <p>Item List:</p>
+            {list.map((element, index) => {
+              return (
+                <p className="list-item" onClick={() => handleDeleteItem(index)}>
+                  {element}
+                </p>
+              );
+            })}
+          </div>
+        )}
       </header>
     </div>
   );
