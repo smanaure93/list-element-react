@@ -15,10 +15,12 @@ function App() {
   };
 
   const handleAddItem = () => {
-    const listBck = [...list];
-    listBck.push(item);
-    setList(listBck);
-    setItem("");
+    if (item) {
+      const listBck = [...list];
+      listBck.push(item);
+      setList(listBck);
+      setItem("");
+    }
   };
 
   const handleDeleteItem = (index: number) => {
